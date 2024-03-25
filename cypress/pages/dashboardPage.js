@@ -14,11 +14,11 @@ class dashboardPage{
                 .shadow().find(".playlist-color")
                 .shadow().find("#icon"),
         scheduleIcon: ()=> 
-                cy.get("[user-configured-lang='en']")
-                    .shadow().find("[name='master']")
-                    .shadow().find("#dexHeader")
-                    .shadow().find(".schedules-color")
-                    .shadow().find("#icon")
+            cy.get("[user-configured-lang='en']")
+                .shadow().find("[name='master']")
+                .shadow().find("#dexHeader")
+                .shadow().find(".schedules-color")
+                .shadow().find("#icon")
     }
 
     clickNetwork(){

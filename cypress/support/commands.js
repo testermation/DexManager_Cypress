@@ -29,7 +29,7 @@ Cypress.on('uncaught:exception', (err, runnable) => {
     return false;
   });
 
-  Cypress.Commands.add('escribirJSON', (ruta, datos) => {
+Cypress.Commands.add('escribirJSON', (ruta, datos) => {
     cy.writeFile(ruta, datos);
   });
 
@@ -38,3 +38,8 @@ Cypress.Commands.add('goToLogin',() => {
     cy.viewport(1720, 900) // Set viewport to 550px x 750px
     cy.visit('https://demo4.dexmanager.com/DexFrontEnd/#!/login');
   });
+
+Cypress.Commands.add('getDexApp',(selector) => {
+    return cy.get("[user-configured-lang='en']")
+    .shadow().find("[name='login']")
+  }); 

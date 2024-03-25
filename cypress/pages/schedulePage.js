@@ -1,62 +1,42 @@
+import {dexScheduleDetail} from '../utils/shadowRootGetter'
+import {dexScheduleView} from '../utils/shadowRootGetter'
 class schedulePage{
 
     elements = {
         addButton: ()=> 
-            cy.get("[user-configured-lang='en']")
-                .shadow().find("[name='master']")
-                .shadow().find("[name='schedules']")
+            dexScheduleView()
                 .shadow().find("[icon-start='add']")
                 .shadow().find("#paperFab")
                 .should('be.visible'),
         scheduleButton: ()=> 
-            cy.get("[user-configured-lang='en']")
-                .shadow().find("[name='master']")
-                .shadow().find("[name='schedules']")
+            dexScheduleView()
                 .shadow().find("[icon='schedule']")
                 .shadow().find("#paperFab")
                 .should('be.visible'),
         nameScheduleInput: ()=>
-            cy.get("[user-configured-lang='en']")
-                .shadow().find("[name='master']")
-                .shadow().find("[name='schedules']")
-                .shadow().find("#dexScheduleDetail")
+            dexScheduleDetail()
                 .shadow().find(".flex.input-name")
                 .shadow().find("input[autocomplete='off']")
                 .should('be.visible')
                 .should('not.be.disabled'),
-        gridToday: ()=> 
-            cy.get("[user-configured-lang='en']")
-                .shadow().find("[name='master']")
-                .shadow().find("[name='schedules']")
-                .shadow().find("#dexScheduleDetail")
-                .shadow().find("div[current-day='']"),
+        gridToday: (diaSemana)=> 
+            dexScheduleDetail()
+                .shadow().find("#day-" + diaSemana),
         playlistPeriodInput: ()=> 
-            cy.get("[user-configured-lang='en']")
-                .shadow().find("[name='master']")
-                .shadow().find("[name='schedules']")
-                .shadow().find("#dexScheduleDetail")
+            dexScheduleDetail()
                 .shadow().find("#playlistMenu")
                 .shadow().find("#playlistMenu")
                 .shadow().find("vaadin-text-field[part='text-field']")
                 .shadow().find("input[role='combobox']"),
         acceptButton: ()=>
-            cy.get("[user-configured-lang='en']")
-                .shadow().find("[name='master']")
-                .shadow().find("[name='schedules']")
-                .shadow().find("#dexScheduleDetail")
+            dexScheduleDetail()
                 .shadow().find('paper-button[role="button"][tabindex="0"][aria-disabled="false"]').contains('Aceptar'),
         saveButton: ()=>
-            cy.get("[user-configured-lang='en']")
-                .shadow().find("[name='master']")
-                .shadow().find("[name='schedules']")
-                .shadow().find("#dexScheduleDetail")
+            dexScheduleDetail()
                 .shadow().find("[icon='save']")
                 .shadow().find("#icon"),
         everyDaysCheckbox: ()=>
-            cy.get("[user-configured-lang='en']")
-                .shadow().find("[name='master']")
-                .shadow().find("[name='schedules']")
-                .shadow().find("#dexScheduleDetail")
+            dexScheduleDetail()
                 .shadow().find("#dialogAddEditPeriod")
                 .find("paper-checkbox[style='margin-right: 15px; --paper-checkbox-ink-size: 48px;']")
                 .should('be.visible')
@@ -78,7 +58,11 @@ class schedulePage{
     }
 
     clickGridToday(){
-        this.elements.gridToday().click()
+        const fechaActual = new Date();
+        let diaSemana = fechaActual.getDay();    // Obtiene el día de la semana (0-6)
+
+        diaSemana = (diaSemana + 6) % 7;         // Ajusta el número del día de la semana para que lunes sea el día 0
+        this.elements.gridToday(diaSemana).click()
     }
 
     typePlaylistPeriodInput(namePlaylist){

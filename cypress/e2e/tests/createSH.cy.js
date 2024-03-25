@@ -1,9 +1,9 @@
 
 import loginPage from "../../Pages/loginPage";
-import dashboardPage from "../../Pages/dashboardPage";
-import schedulePage from "../../Pages/schedulePage";
-import globalPage from "../../Pages/globalPage";
-import dateFormatter from "../../Utils/dateFormatter";
+import dashboardPage from "../../pages/dashboardPage";
+import schedulePage from "../../pages/schedulePage";
+import globalPage from "../../pages/globalPage";
+import dateFormatter from "../../utils/dateFormatter";
 
 describe('Create Scheudule', () => {
   
@@ -30,7 +30,7 @@ describe('Create Scheudule', () => {
 
     schedulePage.typeNameScheduleInput("Calendario creado con Cypress <3 " + fechaFormateada)
   
-    //schedulePage.clickSaveButton()
+    schedulePage.clickSaveButton()
   })
     
   });

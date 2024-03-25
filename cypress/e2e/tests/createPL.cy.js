@@ -1,5 +1,5 @@
 import dashboardPage from "../../Pages/dashboardPage";
-import playlistPage from "../../Pages/playlistPage";
+import playlistPage from "../../pages/playlistPage";
 import loginPage from "../../Pages/loginPage";
 import globalPage from "../../pages/globalPage";
 import dateFormatter from "../../utils/dateFormatter";
@@ -48,6 +48,9 @@ describe('Create Playlist', () => {
     playlistPage.moveMediaToChannel5()
     cy.wait(2000)
     playlistPage.clickSaveButton()
+
+    globalPage.readInfoPopup('Playlist guardada!');
+
   })
     
   });

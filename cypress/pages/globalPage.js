@@ -1,11 +1,26 @@
+import {dexMaster} from "../utils/shadowRootGetter"
+import {dexLoader} from "../utils/shadowRootGetter"
 class globalPage{
 
     elements = {
         spinner: ()=> 
-                cy.get("[user-configured-lang='en']")
-                    .shadow().find("#dexloader")
-                    .shadow().find("#main"),
-       
+            dexLoader()
+                .shadow().find("#main"),
+        errorPopup: ()=>
+            dexMaster()
+                .shadow().find("#errorToast")
+                .shadow().find("#label")
+                .should('be.visible'),
+        infoPopup: (msg)=>
+            dexMaster()
+                .shadow().find("#infoToast")
+                .shadow().find("#label")
+                .should('exist')
+                .should('contain.text', msg),
+        warnPopup: ()=>
+            dexMaster()
+                .shadow().find("#warnToast")
+                .should('be.visible'),
     }
 
 
@@ -14,7 +29,10 @@ class globalPage{
         return await this.elements.spinner().should('have.css', 'display', 'none');
 
     }
-
+    
+    readInfoPopup(msg) {
+        this.elements.infoPopup(msg) 
+    }
     
 
 }

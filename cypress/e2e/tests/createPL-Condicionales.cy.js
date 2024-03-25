@@ -1,8 +1,9 @@
 
-import loginPage from "../../pages/loginPage";
-import dashboardPage from "../../pages/dashboardPage";
+import loginPage from "../../Pages/loginPage";
+import dashboardPage from "../../Pages/dashboardPage";
 import playlistPage from "../../pages/playlistPage";
 import dateFormatter from "../../utils/dateFormatter";
+import globalPage from "../../pages/globalPage"
 
 describe('Create Playlist con condicionales', () => {
   
@@ -37,7 +38,7 @@ describe('Create Playlist con condicionales', () => {
 
     playlistPage.moveMediaToChannel2()
     cy.wait(1500)
-    playlistPage.assingCondRecurrence("04:00","05:00")
+    playlistPage.assingCondEveryDays()
     
     playlistPage.moveMediaToChannel3()
     cy.wait(1500)
@@ -55,7 +56,7 @@ describe('Create Playlist con condicionales', () => {
     
     playlistPage.clickSaveButton()
     
-
+    globalPage.readInfoPopup('Playlist guardada!');
   })
     
   });

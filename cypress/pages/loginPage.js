@@ -1,20 +1,19 @@
+import {dexLogin} from '../utils/shadowRootGetter'
+
 class loginPage{
 
     elements = {
         usernameInput: ()=> 
-                cy.get("[user-configured-lang='en']")
-                    .shadow().find("[name='login']")
-                    .shadow().find("#username")
-                    .shadow().find("input"),
+            dexLogin()
+                .shadow().find("#username")
+                .shadow().find("input"),
         passwordInput: ()=>
-                cy.get("[user-configured-lang='en']")
-                    .shadow().find("[name='login']")
-                    .shadow().find("#password")
-                    .shadow().find("input"),
-            loginButton: ()=>
-                cy.get("[user-configured-lang='en']")
-                    .shadow().find("[name='login']")
-                    .shadow().find(".accept-btn.login-btn")
+            dexLogin()
+                .shadow().find("#password")
+                .shadow().find("input"),
+        loginButton: ()=>
+            dexLogin()
+                .shadow().find(".accept-btn.login-btn")
     }
 
     typeUsername(username){
@@ -30,5 +29,6 @@ class loginPage{
     }
 
 }
+
 
 module.exports = new loginPage();
