@@ -8,6 +8,8 @@ describe('Modificar PL DEFAULT de player', () => {
   
   it("CPXX", async () => {
     let newPL="";
+    cy.viewport(1720, 900) // Set viewport to 550px x 750px
+    
     cy.visit('https://demo4.dexmanager.com/DexFrontEnd/#!/login');
 
     loginPage.typeUsername("testermation")
@@ -35,8 +37,13 @@ describe('Modificar PL DEFAULT de player', () => {
     }
     cy.log("Nueva PL DEFAULT: " + newPL);
 
+    
+    cy.screenshot('Antes de asignar PL Nueva', {capture: 'runner'})
 
     networkDetailPage.asingDefaultPL(newPL)
+
+    
+    cy.screenshot('PL nueva asignada', {capture: 'runner'}) 
 
     networkDetailPage.clickSave(newPL)
   })

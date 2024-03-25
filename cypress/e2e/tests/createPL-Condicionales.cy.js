@@ -57,6 +57,7 @@ describe('Create Playlist con condicionales', () => {
     playlistPage.clickSaveButton()
     
     globalPage.readInfoPopup('Playlist guardada!');
+    cy.screenshot({capture: 'runner'})
   })
     
   });

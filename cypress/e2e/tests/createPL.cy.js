@@ -34,7 +34,7 @@ describe('Create Playlist', () => {
     globalPage.waitSpinner()
 
     playlistPage.typeNamePlaylistInput("Playlist creada con Cypress <3 " + fechaFormateada )
-
+    cy.screenshot()
     //Carga de elementos variados en los channels 1 - 5
     cy.wait(1500)
     playlistPage.moveMediaToChannel1()
@@ -48,9 +48,8 @@ describe('Create Playlist', () => {
     playlistPage.moveMediaToChannel5()
     cy.wait(2000)
     playlistPage.clickSaveButton()
-
     globalPage.readInfoPopup('Playlist guardada!');
-
+    cy.screenshot({capture: 'runner'})
   })
     
   });
