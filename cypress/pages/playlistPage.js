@@ -3,10 +3,10 @@ import {dexComponentContainer} from '../utils/shadowRootGetter'
 import {dexPlaylistTimeline} from '../utils/shadowRootGetter'
 import {dexPlaylistLDetail} from '../utils/shadowRootGetter'
 import {dexComponentInfo} from '../utils/shadowRootGetter'
+import {dexFileTree} from '../utils/shadowRootGetter'
+import {dexComponentSelector} from '../utils/shadowRootGetter'
+
 class playlistPage{
-
-
-   
     /////////////////////////////////////        ELEMENTOS        /////////////////////////////////////
         elements = {
             addButton: ()=> 
@@ -33,21 +33,21 @@ class playlistPage{
             mediaCards: ()=> 
                 dexComponentContainer()
                     .shadow().find(".media-card.paper-material"),
-            mediaQuiosque: ()=>
+            media1: (nameMedia1)=>
                 dexComponentContainer()
-                    .shadow().find("[title='BR_Quiosque_V_MCFLURRY_Kitkat_Ovomaltine_MyM.jpg']"),
-            mediaAxion: ()=>
+                    .shadow().find("[title='" + nameMedia1 + "']"),
+            media2: (nameMedia2)=>
                 dexComponentContainer()
-                    .shadow().find("[title='Cartel AXION Energy PRUEBA1 (2).jpg']"),
-            mediaBurguer54: ()=>
+                    .shadow().find("[title='" + nameMedia2 + "']"),
+            media3: (nameMedia3)=>
                 dexComponentContainer()
-                    .shadow().find("[title='dex-burger54-multi-arg-red-21.02.2500.wgt']"),
-            mediaDescuentos: ()=>
+                    .shadow().find("[title='" + nameMedia3 + "']"),
+            media4: (nameMedia4)=>
                 dexComponentContainer()
-                    .shadow().find("[title='Descuentos 1 hasta 9 ago.mp4']"),
-            mediaQuiosqueJson: ()=>
+                    .shadow().find("[title='" + nameMedia4 + "']"),
+            media5: (nameMedia5)=>
                 dexComponentContainer()
-                    .shadow().find("[title='BR_Quiosque_V_MCFLURRY_Kitkat_Ovomaltine_MyM--2 (1).json']"),
+                    .shadow().find("[title='" + nameMedia5 + "']"),
             channels: ()=>
                 dexPlaylistTimeline()
                     .shadow().find(".horizontal.layout.flex.media-container"),
@@ -122,6 +122,10 @@ class playlistPage{
             mediaInchannelInPosition: (cp)=>
                 dexPlaylistTimeline()
                     .shadow().find("div[data-id='"+ cp + "'"),
+            searchMediaInput: ()=>
+                dexComponentSelector()
+                    .shadow().find("paper-input[class='flex search-input-tree']")
+                    .shadow().find("input[placeholder='Búsqueda/Filtro']"),
         }
        
         /////////////////////////////////////        ACCIONS        /////////////////////////////////////
@@ -145,75 +149,50 @@ class playlistPage{
             this.elements.confirmButton().click()
             this.elements.mediaCards().its('length').should('be.gt', 0) //Espera implicita para la carga de Media en el contenedor
         }
-    
-        clickMediaQuiosque(){
-           // cy.get(this.elements.mediaCards().eq(1).click())
-           this.elements.mediaQuiosque().click()
+
+        moveMediaToChannel1(channel1,nameMedia1){
+            this.elements.media1(nameMedia1).click().then(elemento2 => {
+                cy.wait(1000)
+                this.elements.channels().eq(channel1-1).click().then((elemento3) => {
+                    cy.wrap(elemento2).drag(elemento3)
+                })
+            })               
+        }
+
+        moveMediaToChannel2(channel2, nameMedia2){
+            this.elements.media2(nameMedia2).click().then(elemento1 => {
+                cy.wait(1000)
+                this.elements.channels().eq(channel2-1).click().then((elemento4) => {
+                    cy.wrap(elemento1).drag(elemento4)
+                })
+            })               
         }
         
-        moveMediaToChannel1(){
-            this.elements.mediaQuiosque().then($elemento => {
-                
-                const elementoDOM = $elemento; 
-                this.elements.channels().eq(0).then($elemento1 => {
-                
-                    const elemento1DOM = $elemento1;
-    
-                    cy.wrap(elementoDOM).drag(elemento1DOM)
+        moveMediaToChannel3(channel, nameMedia){
+            this.elements.media3(nameMedia).click().then(elemento1 => {
+                cy.wait(1000)
+                this.elements.channels().eq(channel-1).click().then((elemento2) => {
+                    cy.wrap(elemento1).drag(elemento2)
                 })
-         })
+            })               
         }
-    
-        moveMediaToChannel2(){
-            this.elements.mediaAxion().then($elemento2 => {
-                
-                const elemento2DOM = $elemento2; 
-                this.elements.channels().eq(1).then($elemento3 => {
-                
-                    const elemento3DOM = $elemento3;
-    
-                    cy.wrap(elemento2DOM).drag(elemento3DOM)
+
+        moveMediaToChannel4(channel, nameMedia){
+            this.elements.media4(nameMedia).click().then(elemento1 => {
+                cy.wait(1000)
+                this.elements.channels().eq(channel-1).click().then((elemento2) => {
+                    cy.wrap(elemento1).drag(elemento2)
                 })
-         })               
+            })               
         }
-    
-        moveMediaToChannel3(){
-            this.elements.mediaBurguer54().then($elemento2 => {
-                
-                const elemento2DOM = $elemento2; 
-                this.elements.channels().eq(2).then($elemento3 => {
-                
-                    const elemento3DOM = $elemento3;
-    
-                    cy.wrap(elemento2DOM).drag(elemento3DOM)
+
+        moveMediaToChannel5(channel, nameMedia){
+            this.elements.media5(nameMedia).click().then(elemento1 => {
+                cy.wait(1000)
+                this.elements.channels().eq(channel-1).click().then((elemento2) => {
+                    cy.wrap(elemento1).drag(elemento2)
                 })
-         })               
-        }
-    
-        moveMediaToChannel4(){
-            this.elements.mediaDescuentos().then($elemento2 => {
-                
-                const elemento2DOM = $elemento2; 
-                this.elements.channels().eq(3).then($elemento3 => {
-                
-                    const elemento3DOM = $elemento3;
-    
-                    cy.wrap(elemento2DOM).drag(elemento3DOM)
-                })
-         })               
-        }
-    
-        moveMediaToChannel5(){
-            this.elements.mediaQuiosqueJson().then($elemento2 => {
-                
-                const elemento2DOM = $elemento2; 
-                this.elements.channels().eq(4).then($elemento3 => {
-                
-                    const elemento3DOM = $elemento3;
-    
-                    cy.wrap(elemento2DOM).drag(elemento3DOM)
-                })
-         })               
+            })               
         }
         
         typeNamePlaylistInput(namePlaylist){
@@ -300,8 +279,11 @@ class playlistPage{
         assingExclusionTagInput(tag){
             this.elements.exclusionTagInput().click().type(tag+'{enter}')
         }
-    
-        /////////////////////////////////////        FUNCIONES DE CONDICIONALES        /////////////////////////////////////
+        
+        typeSearchMediaInput(ruta){
+            this.elements.searchMediaInput().click().type(ruta + '{enter}', { force: true })
+        }
+        /////////////////////////////////////        FUNCIONES COMPUESTAS DE ACCIONESs       /////////////////////////////////////
         assingCondEveryDays(){
             this.clickMediaInchannelInPosition(1,1)
             this.clickCondicionalTab()
@@ -340,7 +322,31 @@ class playlistPage{
             this.clickCondicionalTab()
             this.assingExclusionTagInput(tag)
         }
-       
+
+        
+        buscarRuta(ruta){
+            this.typeSearchMediaInput(ruta)
+        }
+
+        ubicarSubcarpetaFinal(ruta) {
+            
+            if (ruta !== "") {
+                const listaSubcarpetas = ruta.split("/");
+                let j=listaSubcarpetas.length;
+                cy.log(j)
+                    
+                let carpetaSR = dexFileTree()
+                                    .shadow().find("dex-file-folder[tabindex='0']")
+                                    .click();
+        
+                let i = 1;
+        
+                while (i <= listaSubcarpetas.length) {
+                    carpetaSR = carpetaSR.shadow().find("dex-file-folder[tabindex='0']").click();
+                    i++;
+                }		
+            }
+        }
     }
 
     module.exports = new playlistPage();

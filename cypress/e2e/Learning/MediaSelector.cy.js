@@ -3,9 +3,9 @@
 // Por tanto, se dará como valores de entrada a la función c : channel y p : position
 
 
-import loginPage from "../../Pages/loginPage";
-import playlistPage from "../../Pages/playlistPage";
-import globalPage from "../../Pages/globalPage";
+import loginPage from  "../../pages/playlistPage"
+import playlistPage from "../../pages/playlistPage"
+import globalPage from "../../pages/globalPage";
 //
 describe('Media Selector', () => {
   

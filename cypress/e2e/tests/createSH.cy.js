@@ -1,6 +1,6 @@
 
-import loginPage from "../../Pages/loginPage";
-import dashboardPage from "../../Pages/dashboardPage";
+import loginPage from "../../pages/loginPage";
+import dashboardPage from "../../pages/dashboardPage";
 import schedulePage from "../../pages/schedulePage";
 import globalPage from "../../pages/globalPage";
 import dateFormatter from "../../utils/dateFormatter";

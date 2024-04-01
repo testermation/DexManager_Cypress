@@ -37,6 +37,10 @@ export function dexComponentInfo() {
 export function dexPlaylistTimeline() {
     return dexPlaylistLDetail().shadow().find("#dexPlaylistTimeline")
 }
+export function dexFileTree() {
+    return dexComponentSelector().shadow().find("#dexFileTree")
+}
+
 
 //////////////////////////////////////////////////////// SCHEDULE ////////////////////////////////////////////////////////
 export function dexScheduleView() {
@@ -44,7 +48,7 @@ export function dexScheduleView() {
 }
 
 export function dexScheduleDetail() {
-    return dexScheduleView().shadow().find("#dexScheduleDetail")
+    return dexComponentContainer().shadow().find("#dexScheduleDetail")
 }
 
 //////////////////////////////////////////////////////// GLOBAL ////////////////////////////////////////////////////////
@@ -60,4 +64,3 @@ export function dexNetworkView() {
 export function dexNetworkDetail() {
     return dexNetworkView().shadow().find("#dexNetworkList")
 }
-

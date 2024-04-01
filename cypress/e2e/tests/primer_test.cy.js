@@ -1,6 +1,6 @@
 
-import loginPage from "../../Pages/loginPage";
-import dashboardPage from "../../Pages/dashboardPage";
+import loginPage from "../../pages/loginPage";
+import dashboardPage from "../../pages/dashboardPage";
 import networkPage from "../../pages/networkPage";
 import networkDetailPage from "../../pages/networkDetailPage";
 
