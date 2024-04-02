@@ -33,21 +33,9 @@ class playlistPage{
             mediaCards: ()=> 
                 dexComponentContainer()
                     .shadow().find(".media-card.paper-material"),
-            media1: (nameMedia1)=>
+            media: (nameMedia)=>
                 dexComponentContainer()
-                    .shadow().find("[title='" + nameMedia1 + "']"),
-            media2: (nameMedia2)=>
-                dexComponentContainer()
-                    .shadow().find("[title='" + nameMedia2 + "']"),
-            media3: (nameMedia3)=>
-                dexComponentContainer()
-                    .shadow().find("[title='" + nameMedia3 + "']"),
-            media4: (nameMedia4)=>
-                dexComponentContainer()
-                    .shadow().find("[title='" + nameMedia4 + "']"),
-            media5: (nameMedia5)=>
-                dexComponentContainer()
-                    .shadow().find("[title='" + nameMedia5 + "']"),
+                    .shadow().find("[title='" + nameMedia + "']"),
             channels: ()=>
                 dexPlaylistTimeline()
                     .shadow().find(".horizontal.layout.flex.media-container"),
@@ -149,52 +137,19 @@ class playlistPage{
             this.elements.confirmButton().click()
             this.elements.mediaCards().its('length').should('be.gt', 0) //Espera implicita para la carga de Media en el contenedor
         }
-
-        moveMediaToChannel1(channel1,nameMedia1){
-            this.elements.media1(nameMedia1).click().then(elemento2 => {
-                cy.wait(1000)
-                this.elements.channels().eq(channel1-1).click().then((elemento3) => {
-                    cy.wrap(elemento2).drag(elemento3)
-                })
-            })               
-        }
-
-        moveMediaToChannel2(channel2, nameMedia2){
-            this.elements.media2(nameMedia2).click().then(elemento1 => {
-                cy.wait(1000)
-                this.elements.channels().eq(channel2-1).click().then((elemento4) => {
-                    cy.wrap(elemento1).drag(elemento4)
+  
+        moveMediaToChannel(channel, nameMedia){
+            this.elements.media(nameMedia).then(source => {
+                this.elements.channels().eq(channel-1).then((destination) => {
+                    cy.wrap(source).drag(destination)
                 })
             })               
         }
         
-        moveMediaToChannel3(channel, nameMedia){
-            this.elements.media3(nameMedia).click().then(elemento1 => {
-                cy.wait(1000)
-                this.elements.channels().eq(channel-1).click().then((elemento2) => {
-                    cy.wrap(elemento1).drag(elemento2)
-                })
-            })               
+        clickMedia(nameMedia){
+            this.elements.media(nameMedia).click();
         }
 
-        moveMediaToChannel4(channel, nameMedia){
-            this.elements.media4(nameMedia).click().then(elemento1 => {
-                cy.wait(1000)
-                this.elements.channels().eq(channel-1).click().then((elemento2) => {
-                    cy.wrap(elemento1).drag(elemento2)
-                })
-            })               
-        }
-
-        moveMediaToChannel5(channel, nameMedia){
-            this.elements.media5(nameMedia).click().then(elemento1 => {
-                cy.wait(1000)
-                this.elements.channels().eq(channel-1).click().then((elemento2) => {
-                    cy.wrap(elemento1).drag(elemento2)
-                })
-            })               
-        }
-        
         typeNamePlaylistInput(namePlaylist){
             this.elements.namePlaylistInput().click()
             cy.wait(1000)
@@ -283,7 +238,7 @@ class playlistPage{
         typeSearchMediaInput(ruta){
             this.elements.searchMediaInput().click().type(ruta + '{enter}', { force: true })
         }
-        /////////////////////////////////////        FUNCIONES COMPUESTAS DE ACCIONESs       /////////////////////////////////////
+        /////////////////////////////////////        FUNCIONES COMPUESTAS DE ACCIONES       /////////////////////////////////////
         assingCondEveryDays(){
             this.clickMediaInchannelInPosition(1,1)
             this.clickCondicionalTab()
@@ -346,6 +301,48 @@ class playlistPage{
                     i++;
                 }		
             }
+        }
+
+        assingMediaTochannels(grupo,type,ruta){
+            cy.log(grupo[0]),
+            cy.log(grupo[1]),
+            cy.log(grupo[2]),
+            cy.log(grupo[3]),
+            cy.log(grupo[4]),
+            cy.log("Type:" + type),
+            cy.log("Ruta:" + ruta)
+            if (type ==="raiz"){
+                this.moveMediaToChannel(1, grupo[0])
+                cy.wait(600)
+                this.moveMediaToChannel(2, grupo[1])
+                cy.wait(600)
+                this.moveMediaToChannel(3, grupo[2])
+                cy.wait(600)
+                this.moveMediaToChannel(4, grupo[3])
+                cy.wait(600)
+                this.moveMediaToChannel(5, grupo[4])
+            }
+            else{
+                this.buscarRuta(ruta)
+                this.ubicarSubcarpetaFinal(ruta)
+                cy.wait(600)
+                this.clickMedia(grupo[0])
+                cy.wait(600)
+                this.moveMediaToChannel(1, grupo[0])
+                cy.wait(600)
+                this.moveMediaToChannel(2, grupo[1])
+                cy.wait(600)
+                this.moveMediaToChannel(3, grupo[2])
+                cy.wait(600)
+                this.clickMedia(grupo[0])
+                cy.wait(600)
+                this.moveMediaToChannel(4, grupo[3])
+                cy.wait(600)
+                this.clickMedia(grupo[0])
+                cy.wait(600)
+                this.moveMediaToChannel(5, grupo[4])
+            }
+
         }
     }
 

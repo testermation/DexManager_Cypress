@@ -43,3 +43,28 @@ Cypress.Commands.add('getDexApp',(selector) => {
     return cy.get("[user-configured-lang='en']")
     .shadow().find("[name='login']")
   }); 
+
+Cypress.Commands.add('getDataIn', () => {
+  cy.fixture('dataIn.json').then((datos) => {
+    ruta = datos.ruta;
+    if(ruta==="Testing/Automation/carpeta 1"){
+      grupo = Object.values(datos.grupo1[0]);
+      type = "ruta";
+    }else{
+      grupo = Object.values(datos.grupo2[0]);
+      type = "raiz";
+    }
+
+    cy.log(grupo[0]),
+    cy.log(grupo[1]),
+    cy.log(grupo[2]),
+    cy.log(grupo[3]),
+    cy.log(grupo[4]),
+    cy.log("Type:" + type),
+    cy.log("Ruta:" + ruta)
+    
+    return { grupo, type, ruta };
+  }); 
+});
+
+
