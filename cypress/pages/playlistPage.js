@@ -36,6 +36,10 @@ class playlistPage{
             media: (nameMedia)=>
                 dexComponentContainer()
                     .shadow().find("[title='" + nameMedia + "']"),
+            mediaInChannel: (channel, nameMedia)=>
+                dexPlaylistTimeline()
+                    .shadow().find(".horizontal.layout.flex.media-container").eq(channel-1)
+                    .find("div[title='"+ nameMedia + "']"),
             channels: ()=>
                 dexPlaylistTimeline()
                     .shadow().find(".horizontal.layout.flex.media-container"),
@@ -143,7 +147,8 @@ class playlistPage{
                 this.elements.channels().eq(channel-1).then((destination) => {
                     cy.wrap(source).drag(destination)
                 })
-            })               
+            })      
+            this.elements.mediaInChannel(channel, nameMedia).should('be.visible')         
         }
         
         clickMedia(nameMedia){
@@ -164,27 +169,7 @@ class playlistPage{
         clickCondicionalTab(){
             this.elements.condicionalTab().click({force:true})
         }
-    
-        clickMediaQuiosqueInchannel(){
-            this.elements.mediaQuiosqueInchannel().click()
-        }
-    
-        clickMediaAxionInchannel(){
-            this.elements.mediaAxionInchannel().click()
-        }
-    
-        clickMediaBurguer54Inchannel(){
-            this.elements.mediaBurguer54Inchannel().click()
-        }
-    
-        clickMediaDescuentosInchannel(){
-            this.elements.mediaDescuentosInchannel().click()
-        }
-    
-        clickMediaQuiosqueJsonInchannel(){
-            this.elements.mediaQuiosqueJsonInchannel().click()
-        }
-    
+
         clickMediaInchannelInPosition(c,p){
             p= p -1 //position internamente es un arreglo que inicia en 0. Por tanto, restamos uno para que la selección sea correcta
             let cp = c + "-" + p  //creamos el string "c-p" que luego será utilziado por el comando cy.get
@@ -239,14 +224,14 @@ class playlistPage{
             this.elements.searchMediaInput().click().type(ruta + '{enter}', { force: true })
         }
         /////////////////////////////////////        FUNCIONES COMPUESTAS DE ACCIONES       /////////////////////////////////////
-        assingCondEveryDays(){
-            this.clickMediaInchannelInPosition(1,1)
+        assingCondEveryDays(c, p){
+            this.clickMediaInchannelInPosition(c, p)
             this.clickCondicionalTab()
             this.clickEveryDaysCheckbox()
         }
     
-        assingCondDateFromTo(from,to){
-            this.clickMediaInchannelInPosition(3,1)
+        assingCondDateFromTo(c, p, from, to){
+            this.clickMediaInchannelInPosition(c, p)
             this.clickCondicionalTab()
             this.typeFromHourInput(from)
             cy.wait(1000)
@@ -260,20 +245,20 @@ class playlistPage{
             this.clickTodayButtonTo()
         }
     
-        assingCondRecurrence(from,to){
-            this.clickMediaInchannelInPosition(2,1)
+        assingCondRecurrence(c, p, from, to){
+            this.clickMediaInchannelInPosition(c, p)
             this.clickCondicionalTab()
             this.typeFromHourRecurenceInput(from)
             cy.wait(1000)
             this.typeToHourRecurenceInput(to)
         }
-        assingCondInclusionTag(tag){
-            this.clickMediaInchannelInPosition(3,1)
+        assingCondInclusionTag(c, p, tag){
+            this.clickMediaInchannelInPosition(c, p)
             this.clickCondicionalTab()
             this.assingInclusionTagInput(tag)  
         }
-        assingCondExclusionTag(tag){
-            this.clickMediaInchannelInPosition(4,1)
+        assingCondExclusionTag(c, p, tag){
+            this.clickMediaInchannelInPosition(c, p)
             this.clickCondicionalTab()
             this.assingExclusionTagInput(tag)
         }
@@ -313,31 +298,31 @@ class playlistPage{
             cy.log("Ruta:" + ruta)
             if (type ==="raiz"){
                 this.moveMediaToChannel(1, grupo[0])
-                cy.wait(600)
+                cy.wait(1000)
                 this.moveMediaToChannel(2, grupo[1])
-                cy.wait(600)
+                cy.wait(1000)
                 this.moveMediaToChannel(3, grupo[2])
-                cy.wait(600)
+                cy.wait(1000)
                 this.moveMediaToChannel(4, grupo[3])
-                cy.wait(600)
+                cy.wait(1000)
                 this.moveMediaToChannel(5, grupo[4])
             }
             else{
                 this.buscarRuta(ruta)
                 this.ubicarSubcarpetaFinal(ruta)
-                cy.wait(600)
+                cy.wait(1000)
                 this.clickMedia(grupo[0])
                 cy.wait(600)
                 this.moveMediaToChannel(1, grupo[0])
-                cy.wait(600)
+                cy.wait(1000)
                 this.moveMediaToChannel(2, grupo[1])
-                cy.wait(600)
+                cy.wait(1000)
                 this.moveMediaToChannel(3, grupo[2])
-                cy.wait(600)
+                cy.wait(1000)
                 this.clickMedia(grupo[0])
                 cy.wait(600)
                 this.moveMediaToChannel(4, grupo[3])
-                cy.wait(600)
+                cy.wait(1000)
                 this.clickMedia(grupo[0])
                 cy.wait(600)
                 this.moveMediaToChannel(5, grupo[4])
