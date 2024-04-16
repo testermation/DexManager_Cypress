@@ -1,0 +1,21 @@
+{
+    "ruta": "Testing/Automation/carpeta 1",
+	"grupo1": [{
+        "nameMedia1": "pandas 1.jpg",
+        "nameMedia2": "pandas 2.jpg",
+        "nameMedia3": "pandas 3.jpg",
+        "nameMedia4": "pandas 4.jpg",
+        "nameMedia5": "pandas 5.jpg"
+        }
+    ],
+    "grupo2": [{
+        "nameMedia1": "BR_Quiosque_V_MCFLURRY_Kitkat_Ovomaltine_MyM.jpg",
+        "nameMedia2": "Cartel AXION Energy PRUEBA1 (2).jpg",
+        "nameMedia3": "dex-burger54-multi-arg-red-21.02.2500.wgt",
+        "nameMedia4": "Descuentos 1 hasta 9 ago.mp4",
+        "nameMedia5": "BR_Quiosque_V_MCFLURRY_Kitkat_Ovomaltine_MyM--2 (1).json"
+        }
+    ]
+
+}
+		
