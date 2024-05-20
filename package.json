@@ -20,7 +20,7 @@
   "dependencies": {
     "cypress-drag-drop": "^1.1.1",
     "pg": "^8.11.5"
-  }
+  },
   "devDependencies": {
     "http-server": "^0.12.3"
   }
