@@ -11,6 +11,7 @@
     "cypress:record": "cypress run --record --key"
   },
   "devDependencies": {
+    "http-server": "^0.12.3"
     "@4tw/cypress-drag-drop": "^2.2.5",
     "cypress": "^13.9.0",
     "cypress-mochawesome-reporter": "^3.8.2",
@@ -20,8 +21,5 @@
   "dependencies": {
     "cypress-drag-drop": "^1.1.1",
     "pg": "^8.11.5"
-  },
-  "devDependencies": {
-    "http-server": "^0.12.3"
   }
 }
