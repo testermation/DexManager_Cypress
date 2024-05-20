@@ -5,7 +5,7 @@ const mysql = require("mysql");
 
 
 module.exports = defineConfig({
-  projectId: "qa5ydh",
+  projectId: "ysqwcq",
   reporter: 'cypress-mochawesome-reporter',
   reporterOptions: {
     reportDir: "cypress/report",
