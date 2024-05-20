@@ -1,0 +1,110 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-05-20T16:44:29.381Z",
+    "end": "2024-05-20T16:44:29.475Z",
+    "duration": 94,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "60887ef2-64da-4a06-bf33-0d658922a79a",
+      "title": "",
+      "fullFile": "cypress\\e2e\\tests\\create PL smart.cy.js",
+      "file": "cypress\\e2e\\tests\\create PL smart.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e0d8af9f-6875-4469-940b-3d1923261aa5",
+          "title": "Create Playlist",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "CPXX",
+              "fullTitle": "Create Playlist CPXX",
+              "timedOut": null,
+              "duration": 55,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let fechaFormateada = _dateFormatter.default.datetime();\nlet ruta = \"\";\nlet grupo = [];\nlet type = \"\";\ncy.viewport(1720, 900); // Set viewport to 550px x 750px\ncy.visit('https://demo4.dexmanager.com/DexFrontEnd/#!/login');\ncy.fixture('dataIn.json').then(datos => {\n  ruta = datos.ruta;\n  if (ruta === \"Testing/Automation/carpeta 1\") {\n    grupo = Object.values(datos.grupo1[0]);\n    type = \"ruta\";\n  } else {\n    grupo = Object.values(datos.grupo2[0]);\n    type = \"raiz\";\n  }\n  cy.log(grupo[0]), cy.log(grupo[1]), cy.log(grupo[2]), cy.log(grupo[3]), cy.log(grupo[4]), cy.log(\"Type:\" + type), cy.log(\"Ruta:\" + ruta);\n  _loginPage.default.typeUsername(\"testermation\");\n  _loginPage.default.typePassword(\"QA!2023+\");\n  _loginPage.default.clickLogin();\n  _dashboardPage.default.clickPlaylist();\n  _playlistPage.default.clickAddButton();\n  _playlistPage.default.clickTheaterslistButton();\n  _playlistPage.default.typesearchLayoutInput(\"SINCRO 5PH\");\n  _playlistPage.default.clickResultingLayout();\n  _playlistPage.default.clickConfirmButton();\n  _globalPage.default.waitSpinner();\n  _globalPage.default.waitSpinner();\n  _playlistPage.default.typeNamePlaylistInput(\"Playlist creada con Cypress <3 \" + fechaFormateada);\n  //Carga de elementos variados en los channels 1 - 5\n  cy.wait(100);\n  _playlistPage.default.assingMediaTochannelsSMART(grupo, type, ruta);\n  cy.wait(1500);\n  _playlistPage.default.clickSaveButton();\n  _globalPage.default.readInfoPopup('Playlist guardada!');\n  cy.screenshot({\n    capture: 'runner'\n  });\n});",
+              "err": {},
+              "uuid": "f2ebca4b-122f-4054-b972-b2cd8dcba7b1",
+              "parentUUID": "e0d8af9f-6875-4469-940b-3d1923261aa5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f2ebca4b-122f-4054-b972-b2cd8dcba7b1"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 55,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\report\\.jsons",
+        "charts": true,
+        "reportPageTitle": "Suit_Login_Result",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
