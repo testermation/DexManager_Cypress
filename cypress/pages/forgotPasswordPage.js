@@ -37,7 +37,7 @@ class ForgotPasswordPage{
     forgotTertermation(config){
         this.typeUsername(config.userName)
         this.clicksendButton()
-        this.readDialogPopUp("If the user is valid, you will receive an email with the instructions to follow")
+        this.readDialogPopUp("Si el usuario es válido, recibirá un email con las instrucciones a seguir")
     }
 }
 

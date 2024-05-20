@@ -25,7 +25,7 @@ class playlistPage{
                     .shadow().find("input"),
             resultingLayout: ()=> 
                 dexPlaylistView()  
-                    .shadow().find("#layout-141"),
+                    .shadow().find(".vertical.layout.center.layout-card"),
             confirmButton: ()=> 
                 dexPlaylistView()
                     .shadow().find("[dialog-confirm='']")
@@ -129,8 +129,8 @@ class playlistPage{
             this.elements.theaterslistButton().click()
         }
     
-        typesearchLayoutInput(layout){
-            this.elements.searchLayoutInput().type(layout, {force:true})
+        typesearchLayoutInput(config){
+            this.elements.searchLayoutInput().type(config.layout, {force:true})
         }
     
         clickResultingLayout(){
@@ -197,19 +197,19 @@ class playlistPage{
         }
     
         typeFromHourInput(from){
-            this.elements.fromHourInput().click().type(from)
+            this.elements.fromHourInput().click().type(from, { force: true })
         }
     
         typeToHourInput(to){
-            this.elements.toHourInput().click().type(to)
+            this.elements.toHourInput().click().type(to, { force: true })
         }
     
         typeFromHourRecurenceInput(from){
-            this.elements.fromHourRecurenceInput().click().type(from)
+            this.elements.fromHourRecurenceInput().click().type(from, { force: true })
         }
     
         typeToHourRecurenceInput(to){
-            this.elements.toHourRecurenceInput().click().type(to)
+            this.elements.toHourRecurenceInput().click().type(to, { force: true })
         }
     
         assingInclusionTagInput(tag){
@@ -234,14 +234,14 @@ class playlistPage{
             this.clickMediaInchannelInPosition(c, p)
             this.clickCondicionalTab()
             this.typeFromHourInput(from)
-            cy.wait(1000)
+            cy.wait(300)
             this.typeToHourInput(to)
             this.clickFromDateInput()
-            cy.wait(1000)
+            cy.wait(300)
             this.clickTodayButtonFrom()
-            cy.wait(2000)
+            cy.wait(300)
             this.clickToDateInput()
-            cy.wait(1000)
+            cy.wait(300)
             this.clickTodayButtonTo()
         }
     
@@ -249,7 +249,7 @@ class playlistPage{
             this.clickMediaInchannelInPosition(c, p)
             this.clickCondicionalTab()
             this.typeFromHourRecurenceInput(from)
-            cy.wait(1000)
+            cy.wait(300)
             this.typeToHourRecurenceInput(to)
         }
         assingCondInclusionTag(c, p, tag){
@@ -288,14 +288,33 @@ class playlistPage{
             }
         }
 
-        assingMediaTochannels(grupo,type,ruta){
-            cy.log(grupo[0]),
-            cy.log(grupo[1]),
-            cy.log(grupo[2]),
-            cy.log(grupo[3]),
-            cy.log(grupo[4]),
-            cy.log("Type:" + type),
-            cy.log("Ruta:" + ruta)
+        assingMediaTochannels(config){
+           
+            this.buscarRuta(config.ruta)
+            this.ubicarSubcarpetaFinal(config.ruta)
+            cy.wait(1000)
+            this.moveMediaToChannel(1, config.medias[0])
+            this.assingCondDateFromTo(1, 1, "18:00", "19:00")
+            cy.wait(1000)
+            this.moveMediaToChannel(2, config.medias[1])
+            this.assingCondEveryDays(2, 1,)
+            cy.wait(1000)
+            this.moveMediaToChannel(1, config.medias[2])
+            this.assingCondRecurrence(1, 2, "18:00", "19:00")
+            cy.wait(1000)
+            cy.wait(600)
+            this.moveMediaToChannel(2, config.medias[3])
+            this.assingCondInclusionTag(2, 2, "REPRODUCIR")
+            cy.wait(1000)
+            this.clickMedia(config.medias[0])
+            cy.wait(600)
+            this.moveMediaToChannel(1, config.medias[4])
+            this.assingCondExclusionTag(1, 3, "NO REPRODUCIR")
+        }
+
+        
+
+        assingMediaTochannelsSMART(grupo,type,ruta){// procedimiento utilizado únicameent por el script: Create PL Smart
             if (type ==="raiz"){
                 this.moveMediaToChannel(1, grupo[0])
                 cy.wait(1000)

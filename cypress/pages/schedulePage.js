@@ -19,7 +19,7 @@ class schedulePage{
                 .shadow().find("input[autocomplete='off']")
                 .should('be.visible')
                 .should('not.be.disabled'),
-        gridToday: (diaSemana)=> 
+        grid: (diaSemana)=> 
             dexScheduleDetail()
                 .shadow().find("#day-" + diaSemana),
         playlistPeriodInput: ()=> 
@@ -62,7 +62,21 @@ class schedulePage{
         let diaSemana = fechaActual.getDay();    // Obtiene el día de la semana (0-6)
 
         diaSemana = (diaSemana + 6) % 7;         // Ajusta el número del día de la semana para que lunes sea el día 0
-        this.elements.gridToday(diaSemana).click()
+        this.elements.grid(diaSemana).click()
+    }
+
+    clickGridTomorrow(){
+        const fechaActual = new Date();
+        let diaSemana = fechaActual.getDay();    // Obtiene el día de la semana (0-6)
+
+        diaSemana = (diaSemana + 6) % 7;         // Ajusta el número del día de la semana para que lunes sea el día 0
+        if (diaSemana == 6){
+            diaSemana = 0;}
+        else{
+            diaSemana++;
+            }
+        
+        this.elements.grid(diaSemana).click()
     }
 
     typePlaylistPeriodInput(namePlaylist){
@@ -83,9 +97,17 @@ class schedulePage{
         this.elements.everyDaysCheckbox().click()
     }
 
-    createPeriodToday(namePlaylist){
+    ////////////////////////////////////////////////////// FUNCIONES COMPUESTASPOR ACTIONS //////////////////////////////////////////////////
+
+    createPeriodToday(config){
         this.clickGridToday()
-        this.typePlaylistPeriodInput(namePlaylist)
+        this.typePlaylistPeriodInput(config.calendarPL)
+        this.clickAcceptButton()
+    }
+
+    createPeriodTomowwor(config){
+        this.clickGridTomorrow()
+        this.typePlaylistPeriodInput(config.calendarPL)
         this.clickAcceptButton()
     }
 
