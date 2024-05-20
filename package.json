@@ -1,11 +1,13 @@
 {
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.5",
-    "cypress": "^13.7.0",
+    "cypress": "^13.9.0",
     "cypress-mochawesome-reporter": "^3.8.2",
-    "cypress-wait-until": "^3.0.1"
+    "cypress-wait-until": "^3.0.1",
+    "mysql": "^2.18.1"
   },
   "dependencies": {
-    "cypress-drag-drop": "^1.1.1"
+    "cypress-drag-drop": "^1.1.1",
+    "pg": "^8.11.5"
   }
 }

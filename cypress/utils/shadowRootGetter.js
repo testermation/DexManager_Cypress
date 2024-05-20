@@ -1,3 +1,23 @@
+//////////////////////////////////////////////////////// DASHBOARD ////////////////////////////////////////////////////////
+
+export function dexHeader() {
+    return dexMaster() .shadow().find("#dexHeader")
+}
+
+//////////////////////////////////////////////////////// LAYOUT ////////////////////////////////////////////////////////
+
+export function dexLayoutView() {
+    return dexMaster().shadow().find("[name='frameset']")
+}
+
+export function dexLayoutList() {
+    return dexLayoutView().shadow().find("#layoutListTag")
+}
+
+export function dexLayoutDetail() {
+    return dexLayoutView().shadow().find("#layoutDetailTag")
+}
+
 //////////////////////////////////////////////////////// LOGIN ////////////////////////////////////////////////////////
 
 export function dexApp() {
@@ -7,13 +27,16 @@ export function dexApp() {
 export function dexLogin() {
     return dexApp().shadow().find("[name='login']")
 }
+
 //////////////////////////////////////////////////////// FORGOT PASSWORD ////////////////////////////////////////////////////////
+
 export function dexForgot() {
     return dexApp().shadow().find("[name='forgot-password']")
 }
 
 
 //////////////////////////////////////////////////////// PLAYLIST ////////////////////////////////////////////////////////
+
 export function dexMaster() {
     return dexApp().shadow().find("[name='master']")
 }
@@ -41,6 +64,7 @@ export function dexComponentInfo() {
 export function dexPlaylistTimeline() {
     return dexPlaylistLDetail().shadow().find("#dexPlaylistTimeline")
 }
+
 export function dexFileTree() {
     return dexComponentSelector().shadow().find("#dexFileTree")
 }
@@ -52,7 +76,7 @@ export function dexScheduleView() {
 }
 
 export function dexScheduleDetail() {
-    return dexComponentContainer().shadow().find("#dexScheduleDetail")
+    return dexScheduleView().shadow().find("#dexScheduleDetail")
 }
 
 //////////////////////////////////////////////////////// GLOBAL ////////////////////////////////////////////////////////
@@ -60,11 +84,29 @@ export function dexScheduleDetail() {
 export function dexLoader() {
     return dexApp().shadow().find("#dexloader")
 }
+
+export function vaadinComboBox() {
+    return dexHeader().shadow().find("#customerDropdown")
+}
+
+
+
 //////////////////////////////////////////////////////// NETWORK ////////////////////////////////////////////////////////
+
 export function dexNetworkView() {
     return dexMaster().shadow().find("[name='network']")
 }
 
-export function dexNetworkDetail() {
+export function dexNetworkList() {
     return dexNetworkView().shadow().find("#dexNetworkList")
+}
+
+//////////////////////////////////////////////////////// GENERAL ////////////////////////////////////////////////////////
+
+export function dexSettingsView() {
+    return dexMaster().shadow().find("[name='settings']")
+}
+
+export function dexSettingsServer() {
+    return dexSettingsView().shadow().find("#server-settings")
 }
