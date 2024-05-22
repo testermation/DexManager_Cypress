@@ -126,7 +126,7 @@ describe('PPU-DEX', () => {
   
     schedulePage.clickSaveButton(); // click en guardar 
 
-    globalPage.readInfoPopup('Calendario guardado!'); // se valida el pop-uo Info
+    globalPage.readInfoPopup('calendario guardado!'); // se valida el pop-uo Info
 
     cy.screenshot({capture: 'runner'}); // se realiza una captura al calendario creado 
   });
