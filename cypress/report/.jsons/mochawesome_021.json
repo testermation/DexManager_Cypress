@@ -1,0 +1,110 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-05-22T14:18:16.875Z",
+    "end": "2024-05-22T14:18:36.978Z",
+    "duration": 20103,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "daf26908-5424-4c48-b819-0fff6ea17671",
+      "title": "",
+      "fullFile": "cypress\\e2e\\tests\\CP01PP.cy.js",
+      "file": "cypress\\e2e\\tests\\CP01PP.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ee486f7e-2ea3-4ece-8b4b-404453f03b82",
+          "title": "Login, logout and forgot password",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "CP01PP",
+              "fullTitle": "Login, logout and forgot password CP01PP",
+              "timedOut": null,
+              "duration": 15558,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\CP01PP.cy.js\\\\Login, logout and forgot password -- CP01PP.png\",\n      \"\\\\CP01PP.cy.js\\\\Login, logout and forgot password -- CP01PP (1).png\"\n    ]\n  ]\n}",
+              "code": "cy.goToLogin(); //Comando para ir a la pagina de Login\n_loginPage.default.loginTestemation(_config.default); //Función login con las credencias de testermation alojadas en config.js\ncy.wait(1000); // espera para la captura\ncy.screenshot({\n  capture: 'runner'\n}, {\n  path: 'C:/Users/example.png'\n}); // Captura del login el dashboard\n_dashboardPage.default.clickAccountMenu(); //Click en foto de perfil\n_dashboardPage.default.clickLogout(); // click en logout\n_loginPage.default.clickForgotBtn(); //Click en \"forgot password\"\n_forgotPasswordPage.default.forgotTertermation(_config.default); //Función para realizar el procesode olvidar contraseña con userName incluye assertion\ncy.wait(500); // espera para la captura\ncy.screenshot({\n  capture: 'runner'\n}, {\n  path: 'C:/Users/example.png'\n}); // Captura del pop-up",
+              "err": {},
+              "uuid": "aa5f39cc-a60d-4764-98f1-b0cc7951493f",
+              "parentUUID": "ee486f7e-2ea3-4ece-8b4b-404453f03b82",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "aa5f39cc-a60d-4764-98f1-b0cc7951493f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 15558,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress\\report\\.jsons",
+        "charts": true,
+        "reportPageTitle": "Suit_Login_Result",
+        "embeddedScreenshots": true,
+        "inlineAssets": true,
+        "saveAllAttempts": false,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
