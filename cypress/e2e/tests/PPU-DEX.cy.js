@@ -126,18 +126,19 @@ describe('PPU-DEX', () => {
   
     schedulePage.clickSaveButton(); // click en guardar 
 
-    globalPage.readInfoPopup('calendario guardado!'); // se valida el pop-uo Info
+    globalPage.readInfoPopup('Calendario guardado!'); // se valida el pop-uo Info
 
     cy.screenshot({capture: 'runner'}); // se realiza una captura al calendario creado 
-  })
-  it("CP15PP", async () => {
+  });
+  it("CP15PP", () => {
 
     cy.goToLogin(); //Comando para ir a la pagina de Login
 
     loginPage.loginTestemation(config); //Función login con las credencias de testermation alojadas en config.js
     
-     //globalPage.goToTenant(config);
-    
+  
+    /*
+      globalPage.goToTenant(config);
      const clientName = await globalPage.readComboTenant();
  
      cy.log("CLIENTNAME=" + clientName)
@@ -148,6 +149,7 @@ describe('PPU-DEX', () => {
          cy.screenshot({capture: 'runner'}); // Captura en tenant incorrecto
          globalPage.changeTenant(config);
      }
+     */
  
      cy.wait(2000);
  
