@@ -10,9 +10,9 @@ describe('Activar Players', () => {
       const players = data;
       
       cy.viewport(1720, 900);
-      cy.visit('https://serverqa.dexmanager.com/DexFrontEnd/#!/login');
-      loginPage.typeUsername("nandrades");
-      loginPage.typePassword("N123Andrades*");
+      cy.visit('https://server.dexmanager.com/DexFrontEnd/#!/login');
+      loginPage.typeUsername("");
+      loginPage.typePassword("");
       loginPage.clickLogin();
       
       dashboardPage.clickNetwork();
