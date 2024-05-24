@@ -56,7 +56,7 @@ class layoutPage{
     }
 
     clickAddFrameButton(){
-        this.elements.addFrameButton().click()
+        this.elements.addFrameButton().click({force:true})
     }
 
     /////////////////////////////////////       SEQUENCE OF ACTIONS      /////////////////////////////////////
